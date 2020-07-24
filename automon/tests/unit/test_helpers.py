@@ -3,6 +3,22 @@ import unittest
 from automon.helpers.assertions import *
 from automon.helpers.sleeper import *
 from automon.helpers.sanitation import *
+from automon.helpers.regex import *
+
+
+class RegexTest(unittest.TestCase):
+
+    def test_Grok(self):
+        self.assertTrue(GrokPatterns)
+        self.assertTrue(GrokPatterns())
+
+    def test_magic(self):
+        self.assertTrue(Magic)
+        test = '100.15.96.234 helehleeajd'
+        self.assertTrue(Magic.magic_box(test))
+
+    def test_geolocation(self):
+        self.assertTrue(geolocation)
 
 
 class SanitationTest(unittest.TestCase):
