@@ -40,7 +40,7 @@ class Logging:
     NOTSET = NOTSET
 
     def __init__(self, name: __name__ = __name__, level: logging.INFO = INFO,
-                 log_stream: LogStream = False):
+                 log_stream: LogStream = False, timestamp: bool = True):
 
         self.logging = logging.getLogger(name)
         self.logging.setLevel(level)
@@ -49,11 +49,16 @@ class Logging:
 
         spacing = 4
 
+        time = '%(asctime)s'
         levelname = '%(levelname)s'
         modname = '%(name)s'
         message = '%(message)s'
-        self.log_format = f'{levelname}\t{modname}\t{message}'
-        # self.log_format = '%(levelname)s\t%(message)s\t%(name)s'
+
+        if timestamp:
+            self.log_format = f'{time}\t{levelname}\t{modname}\t{message}'
+        else:
+            self.log_format = f'{levelname}\t{modname}\t{message}'
+            # self.log_format = '%(levelname)s\t%(message)s\t%(name)s'
 
         logging.basicConfig(level=level, format=self.log_format)
 
