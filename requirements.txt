@@ -25,7 +25,7 @@ python-swiftclient==3.9.0
 # python-keystoneclient==3.22.0
 
 # splunk
-splunk-sdk==1.6.13
+splunk-sdk==1.6.14
 
 # phantom
 pytz==2020.1
