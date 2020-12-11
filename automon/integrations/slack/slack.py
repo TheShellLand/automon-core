@@ -28,20 +28,33 @@ class SlackError:
         """
 
         self._error = error
-        self._response = self._error.response
+        if getattr(self._error, 'response'):
+            self._response = self._error.response
 
-        self.api_url = self._response.api_url
+            self.api_url = self._response.api_url
 
-        self.data = dict(self._response.data)
-        self.ok = self.data.get('ok')
-        self.error = self.data.get('error')
-        self.needed = self.data.get('needed')
-        self.provided = self.data.get('provided')
+            self.data = dict(self._response.data)
+            self.ok = self.data.get('ok')
+            self.error = self.data.get('error')
+            self.needed = self.data.get('needed')
+            self.provided = self.data.get('provided')
 
-        self.headers = self._response.headers
-        self.http_verb = self._response.http_verb
-        self.req_args = self._response.req_args
-        self.status_code = self._response.status_code
+            self.headers = self._response.headers
+            self.http_verb = self._response.http_verb
+            self.req_args = self._response.req_args
+            self.status_code = self._response.status_code
+        else:
+            self._response = ''
+            self.api_url = ''
+            self.data = ''
+            self.ok = ''
+            self.error = ''
+            self.needed = ''
+            self.provided = ''
+            self.headers = ''
+            self.http_verb = ''
+            self.req_args = ''
+            self.status_code = ''
 
     def __repr__(self):
         return f'{self.data}'
